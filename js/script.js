@@ -9,7 +9,7 @@
 // contenitore dei numeri visualizati
 const numeriVisti = document.getElementById('numeri');
 // imposto quanti numeri si vedo in pagina
-const numeriPagina = 5;
+const numeriPagina = 2;
 // questi vengo inseriti dentro un array
 let numeriCasuali = [];
 
@@ -43,6 +43,7 @@ function inviaNumero(){
         let controllo = parseInt(numeriUtente.value);
         numeroInserito.push(controllo);
         console.log(numeroInserito);
+        numeriUtente.value = '';
     }else{
        btn.removeEventListener('click', inviaNumero); 
     }
@@ -54,15 +55,18 @@ const risultato = document.getElementById('testo')
 
 //sapere se sono sati indovinati
 function verficaNumero(){
-    let converte = numeroInserito.toString();
-    let convertCasuali = numeriCasuali.toString();
-    if(converte  == convertCasuali ){
+    const converte = numeroInserito.toString();
+    const converteCasuali = numeriCasuali.toString();
+    if(converte  == converteCasuali){
         console.log('Grande !');
         risultato.innerHTML = 'Grande ! Tutti i numeri sono giusti.';
     }
     else{
         console.log("Hai perso riprova");
-        risultato.innerHTML = 'Riprova';
+        // uso il metodo filter
+        const indovinati = numeriCasuali.filter(element => numeroInserito.includes(element));
+        console.log(indovinati);
+        risultato.innerHTML = 'Riprova,' + 'numeri indovinati : ' + indovinati;
     }
 }
 btnVerifica.addEventListener('click', verficaNumero);
