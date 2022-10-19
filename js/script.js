@@ -49,15 +49,20 @@ function inviaNumero(){
 }
 btn.addEventListener('click', inviaNumero);
 
-// const btnVerifica = document.getElementById('test');
+const btnVerifica = document.getElementById('test');
+const risultato = document.getElementById('testo')
 
-// quali numeri sono sati indovinati
-// function verficaNumero(){
-//     if(numeroInserito.length == numeriVisti.length){
-//         console.log('Riprova');
-//     }
-//     else{
-//        numeroInserito.push(numeriUtente.value);
-//     }
-// }
-// btnVerifica.addEventListener('click', verficaNumero);
+//sapere se sono sati indovinati
+function verficaNumero(){
+    let converte = numeroInserito.toString();
+    let convertCasuali = numeriCasuali.toString();
+    if(converte  == convertCasuali ){
+        console.log('Grande !');
+        risultato.innerHTML = 'Grande ! Tutti i numeri sono giusti.';
+    }
+    else{
+        console.log("Hai perso riprova");
+        risultato.innerHTML = 'Riprova';
+    }
+}
+btnVerifica.addEventListener('click', verficaNumero);
